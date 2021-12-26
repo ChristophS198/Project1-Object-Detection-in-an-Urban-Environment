@@ -26,9 +26,9 @@ def split(data_dir):
     val_des = os.path.join('/home/workspace/data/waymo','val')
     # Check if destination dirs exist and if not create them
     if not os.path.isdir(train_des):
-        os.makedirs(os.path.join(destination,train_des))
+        os.makedirs(train_des)
     if not os.path.isdir(val_des):
-        os.makedirs(os.path.join(destination,val_des))
+        os.makedirs(val_des)
 
     # Shuffle files and split them according to val_portion in training and validation
     files = glob.glob(os.path.join(data_dir,'*.tfrecord'))

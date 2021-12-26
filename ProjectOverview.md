@@ -66,7 +66,7 @@ Example image night   |  Example during daytime
 
 Cars are denoted by red bounding boxes, pedestrians by blue ones and cyclists by green ones.  
 Through the analysis we see that the number of objects per image have a great variance, i.e., in some images there are no objects and in others the image is densely spotted with vehicles, pedestrians and cyclists (over 60), some of which partially hidden. The following graph shows the average number of objects per image for each tfrecord. The analysis was done by iterating through all tfrecords and counting the objects of 10000 images for each record. The x-axis states the first 10 letters of each segment ID of the corresponding tfrecord. The main impression we get from the plot is that most of the detected objects where cars, then pedestrians and only very few cyclists. The code for the data acquisition and visualization can be found in the `Exploratory Data Analysis.ipynb` notebook.  
-![Compares occurrences of vehicles, pedestrians and cyclists in 10000 images of each tfrecord file and normalizes the result](./media/Training_ClassOccurrenceComp.png) 
+![Compares occurrences of vehicles, pedestrians and cyclists in 10000 images of each tfrecord file and normalizes the result](./media/Training_ClassOccurrenceComp.PNG) 
 
 Furthermore most of the pictures where taken during daytime and there exist only few where the light or weather condition is bad. The following plot shows a classification of tfrecords to weather condition. As can be seen the largest portion can be assigned to a "good" weather, where the camera has a free view with good lightning conditions.  
 ![Shows the number of tfrecords distributed over weather conditions ](./media/Training_WeatherConditions.png)

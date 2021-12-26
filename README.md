@@ -13,15 +13,15 @@ For this project, we will be using data from the [Waymo Open dataset](https://wa
 The data you will use for training, validation and testing is organized as follow:
 ```
 /home/workspace/data/waymo
-    - training_and_validation - contains 97 files to train and validate your models
+	- training_and_validation - contains 97 files to train and validate your models
     - train: contain the train data (empty to start)
     - val: contain the val data (empty to start)
     - test - contains 3 files to test your model and create inference videos
 ```
-
 The `training_and_validation` folder contains file that have been downsampled: we have selected one every 10 frames from 10 fps videos. The `testing` folder contains frames from the 10 fps video without downsampling.
-
+```
 You will split this `training_and_validation` data into `train`, and `val` sets by completing and executing the `create_splits.py` file.
+
 
 ### Experiments
 The experiments folder will be organized as follow:
@@ -99,12 +99,14 @@ A new config file has been created, `pipeline_new.config`.
 You will now launch your very first experiment with the Tensorflow object detection API. Move the `pipeline_new.config` to the `/home/workspace/experiments/reference` folder. Now launch the training process:
 * a training process:
 ```
-python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config
+python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config  
+python experiments/model_main_tf2.py --model_dir=experiments/experiment3/ --pipeline_config_path=experiments/experiment3/pipeline_experiment3.config
 ```
 Once the training is finished, launch the evaluation process:
 * an evaluation process:
 ```
 python experiments/model_main_tf2.py --model_dir=experiments/reference/ --pipeline_config_path=experiments/reference/pipeline_new.config --checkpoint_dir=experiments/reference/
+python experiments/model_main_tf2.py --model_dir=experiments/experiment3/ --pipeline_config_path=experiments/experiment3/pipeline_experiment3.config --checkpoint_dir=experiments/experiment3/
 ```
 
 **Note**: Both processes will display some Tensorflow warnings, which can be ignored. You may have to kill the evaluation script manually using
@@ -129,6 +131,7 @@ Modify the arguments of the following function to adjust it to your models:
 
 ```
 python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/reference/pipeline_new.config --trained_checkpoint_dir experiments/reference/ --output_directory experiments/reference/exported/
+python experiments/exporter_main_v2.py --input_type image_tensor --pipeline_config_path experiments/experiment3/pipeline_experiment3.config --trained_checkpoint_dir experiments/experiment3/ --output_directory experiments/experiment3/exported/
 ```
 
 This should create a new folder `experiments/reference/exported/saved_model`. You can read more about the Tensorflow SavedModel format [here](https://www.tensorflow.org/guide/saved_model).
@@ -136,6 +139,7 @@ This should create a new folder `experiments/reference/exported/saved_model`. Yo
 Finally, you can create a video of your model's inferences for any tf record file. To do so, run the following command (modify it to your files):
 ```
 python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/reference/exported/saved_model --tf_record_path /data/waymo/testing/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/reference/pipeline_new.config --output_path animation.gif
+python inference_video.py --labelmap_path label_map.pbtxt --model_path experiments/experiment3/exported/saved_model --tf_record_path /home/workspace/data/waymo/test/segment-12200383401366682847_2552_140_2572_140_with_camera_labels.tfrecord --config_path experiments/experiment3/pipeline_experiment3.config --output_path animation.gif
 ```
 
 ## Submission Template

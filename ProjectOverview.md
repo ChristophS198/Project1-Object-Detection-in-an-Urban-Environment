@@ -66,9 +66,11 @@ Example image night   |  Example during daytime
 
 Cars are denoted by red bounding boxes, pedestrians by blue ones and cyclists by green ones.  
 Through the analysis we see that the number of objects per image have a great variance, i.e., in some images there are no objects and in others the image is densely spotted with vehicles, pedestrians and cyclists (over 60), some of which partially hidden. The following graph shows the average number of objects per image for each tfrecord. The analysis was done by iterating through all tfrecords and counting the objects of 10000 images for each record. The x-axis states the first 10 letters of each segment ID of the corresponding tfrecord. The main impression we get from the plot is that most of the detected objects where cars, then pedestrians and only very few cyclists. The code for the data acquisition and visualization can be found in the `Exploratory Data Analysis.ipynb` notebook.  
-![Compares occurrences of vehicles, pedestrians and cyclists in 10000 images of each tfrecord file and normalizes the result](./media/Training_ClassOccurrenceComp.png)   
+![Compares occurrences of vehicles, pedestrians and cyclists in 10000 images of each tfrecord file and normalizes the result](./media/Training_ClassOccurrenceComp.png) 
+
 Furthermore most of the pictures where taken during daytime and there exist only few where the light or weather condition is bad. The following plot shows a classification of tfrecords to weather condition. As can be seen the largest portion can be assigned to a "good" weather, where the camera has a free view with good lightning conditions.  
 ![Shows the number of tfrecords distributed over weather conditions ](./media/Training_WeatherConditions.png)
+
 The figure showing the weather distribution of the records was created by visualizing one image of each tfrecord file and manually classifying them in weather categories. Since each record contains an image sequence, it is acceptable to classify a record based on one image alone. The code for the visualization of one image and the plot can be found in the `Exploratory Data Analysis.ipynb` notebook.    
 ### Conclusion 
 Maybe we need to somehow compensate for these two imbalances during training. The relatively small number of images with bad light conditions can be taken care of through data augmentations, but the fact that there are only very few images containing cyclists is harder to overcome.     

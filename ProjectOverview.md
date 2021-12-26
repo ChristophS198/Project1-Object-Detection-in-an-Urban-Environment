@@ -113,11 +113,11 @@ Furthermore, the learning rate is reduced and defined by the following parameter
 Another parameter that was adapted is the batch size, which was doubled to 4. The reason is that during experimenting I encountered many jumps in the loss curve and as described in the last section this can be reduced by the batch size value.  
 As a result the following performance was achieved:  
 Loss:
-![Grayscale image augmentation](./media/Improved_Loss.png)
+![Grayscale image augmentation](./media/Improved_Loss.PNG)
 Precision:
-![Grayscale image augmentation](./media/Improved_DetectionBox_Precision.png)
+![Grayscale image augmentation](./media/Improved_DetectionBox_Precision.PNG)
 Recall:
-![Grayscale image augmentation](./media/Improved_DetectionBox_Recall.png)
+![Grayscale image augmentation](./media/Improved_DetectionBox_Recall.PNG)
 As with the reference model it was not possible to run evaluation and training in parallel, therefore only a single evaluation run was executed after the training process.  
 By taking the steps described above we decreased the total loss and also managed to reduce the overfitting. But in my opinion one problem still remains: The imbalance of the dataset. On the one hand the images contain only very few cyclists and on the other hand I believe the images taken during bad lightning or bad weather conditions are too few. Wthin limits the last point can be reduced by extensive augmentations, but they do not provide the solution for the lack of cyclists.  
 
